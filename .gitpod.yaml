@@ -1,16 +1,6 @@
 image: gitpod/workspace-full
 
 tasks:
-    - name: install zig
-      init: ./tools/update-tools.sh
-      command:
-        export PATH=./tools/zig:$PATH
-        && echo "{\"zig_exe_path\":\"$(pwd)/tools/zig/zig\"}" > ~/.config/zls.json
-        && echo
-        && echo workspace start - zig build run ...
-        && ./zig-init-exe-if-missing
-        && zig build run
-
     - name: install liboqs
       before: 
         sudo apt install -y astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind
@@ -20,8 +10,3 @@ tasks:
       command: mkdir build && cd build
         && cmake -GNinja -DBUILD_SHARED_LIBS=ON ..
         && ninja
-
-vscode:
-  extensions:
-    - tiehuis.zig@0.2.5:Yj8BTORJw/zERdoSGPf+eQ==
-    - augusterame.zls-vscode@1.0.4:ZQxqRwcEt9rZuan0J+3BRQ==
